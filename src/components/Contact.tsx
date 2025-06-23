@@ -1,16 +1,71 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone, Linkedin, Github } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted');
+    setIsSubmitting(true);
+
+    try {
+      console.log('Submitting form data:', formData);
+      
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      console.log('Email sent successfully:', data);
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -73,17 +128,43 @@ const Contact = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="Your Name" required />
-                  <Input type="email" placeholder="Your Email" required />
+                  <Input 
+                    name="name"
+                    placeholder="Your Name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required 
+                  />
+                  <Input 
+                    name="email"
+                    type="email" 
+                    placeholder="Your Email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required 
+                  />
                 </div>
-                <Input placeholder="Subject" required />
-                <Textarea 
-                  placeholder="Your Message" 
-                  className="min-h-[120px]" 
+                <Input 
+                  name="subject"
+                  placeholder="Subject" 
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   required 
                 />
-                <Button type="submit" className="w-full">
-                  Send Message
+                <Textarea 
+                  name="message"
+                  placeholder="Your Message" 
+                  className="min-h-[120px]" 
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required 
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </CardContent>
