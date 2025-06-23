@@ -8,7 +8,6 @@ const Skills = () => {
     { category: 'Programming Languages', items: ['C', 'C++', 'Python', 'Java', 'JavaScript', 'TypeScript'] },
     { category: 'Web Development', items: ['React', 'Node.js', 'Express.js', 'MongoDB', 'HTML5', 'CSS3'] },
     { category: 'AI/ML & Data Science', items: ['Machine Learning', 'Deep Learning', 'TensorFlow', 'Pandas', 'NumPy', 'Scikit-learn'] },
-    { category: 'DevOps & Tools', items: ['Git', 'Docker', 'AWS', 'Linux', 'CI/CD', 'Kubernetes'] },
     { category: 'Database', items: ['MongoDB', 'MySQL', 'PostgreSQL', 'Redis'] },
     { category: 'Other', items: ['Data Structures', 'Algorithms', 'System Design', 'RESTful APIs'] }
   ];

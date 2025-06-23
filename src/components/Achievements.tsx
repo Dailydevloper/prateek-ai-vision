@@ -21,30 +21,30 @@ const Achievements = () => {
       date: '2024'
     },
     {
-      title: 'Hackathon Winner',
-      platform: 'Tech Fest 2024',
-      description: 'First place in AI/ML category for innovative solution',
+      title: 'Two Times Science compition Winner',
+      platform: 'Samaritans school',
+      description: 'First place in science model making using tech category for innovative solution',
       icon: <Trophy className="w-8 h-8 text-gold" />,
-      date: '2024'
-    },
-    {
-      title: 'Open Source Contributor',
-      platform: 'GitHub',
-      description: 'Active contributor with 100+ contributions',
-      icon: <Award className="w-8 h-8 text-green-500" />,
       date: '2023-2024'
     },
     {
-      title: 'Data Science Certification',
-      platform: 'Coursera',
-      description: 'Completed comprehensive data science specialization',
+      title: 'Python Certification',
+      platform: 'HackerRank',
+      description: 'Completed after Giving the Python test',
+      icon: <Award className="w-8 h-8 text-green-500" />,
+      date: '2025'
+    },
+    {
+      title: 'Problem Solving Certification',
+      platform: 'HackerRank',
+      description: 'Completed after Giving the Problem Solving test',
       icon: <Award className="w-8 h-8 text-blue-500" />,
       date: '2023'
     },
     {
-      title: 'Machine Learning Certification',
+      title: 'MERN full-stack web development Certification',
       platform: 'edX',
-      description: 'Advanced machine learning algorithms and applications',
+      description: 'Advanced MERN full-stack web development',
       icon: <Award className="w-8 h-8 text-purple-500" />,
       date: '2023'
     }

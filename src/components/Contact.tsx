@@ -84,7 +84,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">prateek@example.com</p>
+                <p className="text-muted-foreground">babaprateek915@gmail.com</p>
               </CardContent>
             </Card>
             
@@ -106,13 +106,13 @@ const Contact = () => {
               </CardHeader>
               <CardContent className="flex gap-4">
                 <Button size="sm" variant="outline" asChild>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/prateek-dwivedi-b07499329/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="w-4 h-4 mr-2" />
                     LinkedIn
                   </a>
                 </Button>
                 <Button size="sm" variant="outline" asChild>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/Dailydevloper" target="_blank" rel="noopener noreferrer">
                     <Github className="w-4 h-4 mr-2" />
                     GitHub
                   </a>
